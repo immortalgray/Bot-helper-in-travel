@@ -1,9 +1,9 @@
 LOGS = 'logs.txt'  # файл для логов
 
-IAM_TOKEN = "eCeGxmpJKccTzET7iRBg"
-FOLDER_ID = "bei"
-API_KEY = "d1aa5ecb"
-BOT_TOKEN = "7163123nClmzVDMnx5WPQ"
+IAM_TOKEN = ""
+FOLDER_ID = ""
+API_KEY = ""
+BOT_TOKEN = ""
 MAX_GPT_TOKENS = 150
 MAX_TOKENS_FOR_PEOPLE = 10000
 DESCRIPTION_ATTRACTION = [{'role': 'system', 'text':  "Ты знаешь о интересных местах, памятниках и тд. Можешь кратко интересно рассказать о любом, сейчас нужно рассказать о"}]

@@ -105,7 +105,6 @@ def description(message: telebot.types.Message):
     except Exception as e:
         logging.error(e)  # если ошибка — записываем её в логи
         bot.send_message(message.from_user.id, "Не получилось ответить. Попробуй написать другое сообщение")
-        bot.send_photo(message.chat.id, open("C:\\Users\\USER\\Desktop\\Не так что-то пошло.jpg"))
 
 
 @bot.message_handler(commands=['weather'])
@@ -124,8 +123,6 @@ def weather_2(message: telebot.types.Message):
     except Exception as e:
         logging.error(e)  # если ошибка — записываем её в логи
         bot.send_message(message.from_user.id, "Не получилось ответить. Попробуй написать другое сообщение")
-        bot.send_photo(message.chat.id, open("C:\\Users\\USER\\Desktop\\Не так что-то пошло.jpg"))
-
 
 @bot.message_handler(commands=["attractions"])
 def attraction(message: telebot.types.Message):
@@ -151,8 +148,6 @@ def attraction(message: telebot.types.Message):
     except Exception as e:
         logging.error(e)  # если ошибка — записываем её в логи
         bot.send_message(message.from_user.id, "Не получилось ответить. Попробуй написать другое сообщение")
-        bot.send_photo(message.chat.id, open("C:\\Users\\USER\\Desktop\\Не так что-то пошло.jpg"))
-
 
 @bot.message_handler(commands=["What_to_wear"])
 def wear(message: telebot.types.Message):
@@ -180,7 +175,6 @@ def wear(message: telebot.types.Message):
     except Exception as e:
         logging.error(e)  # если ошибка — записываем её в логи
         bot.send_message(message.from_user.id, "Не получилось ответить. Попробуй написать другое сообщение")
-        bot.send_photo(message.chat.id, open("C:\\Users\\USER\\Desktop\\Не так что-то пошло.jpg"))
 
 
 @bot.message_handler(commands=['about_attractions'])

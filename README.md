@@ -33,3 +33,4 @@
 Для связи с разработчиками можно использовать следующие контакты:
 
 - [Telegram](https://t.me/xotelkill)
+- [Telegram](https://t.me/aleks2363)

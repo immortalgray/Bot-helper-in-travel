@@ -9,6 +9,7 @@ from bs import *
 from validators import *
 
 users_city = {}
+comands = ["/start", "/help", "/debug", "/description", "/weather", "/attractions", "/What_to_wear", "/about_attractions"]
 
 # настраиваем запись логов в файл
 logging.basicConfig(filename=LOGS, level=logging.ERROR,
@@ -33,7 +34,7 @@ def menu_keyboard(options):
 @bot.message_handler(commands=['start'])
 def start(message: telebot.types.Message):
     bot.send_message(message.from_user.id, "Привет! Я твой бот помощник в путешествиях, напиши мне свой город"
-                                           "и я тебе расскажу о нём!", reply_markup=menu_keyboard(['/help', '/debug']))
+                                           "и я тебе расскажу о нём!")
     prepare_database()  # создаем базу для общения с GPT
     test = count_tokens_in_project(message)
     if test == True:
@@ -43,10 +44,17 @@ def start(message: telebot.types.Message):
 
 
 def what_doing(message: telebot.types.Message):
-    users_city[message.chat.id] = message.text
-    bot.send_message(message.chat.id, "Выберите какую информацию вы хотите узнать!", reply_markup=menu_keyboard([
+    city = ask_gpt(messages=[{'role': 'user', 'text': f"{message.text}"}], prompt=WHAT_CITY)
+    answer = city[1]
+    print(answer)
+    if answer.startswith("Город:"):
+        answer_last = answer.split()[1]
+        users_city[message.from_user.id] = answer_last
+        bot.send_message(message.chat.id, "Выберите какую информацию вы хотите узнать!", reply_markup=menu_keyboard([
         '/description', "/weather", "/attractions", "/What_to_wear", "/about_attractions"]))
-
+    else:
+        bot.send_message(message.chat.id, "Введите только город! Я возвращаю вас на старт!")
+        start(message)
 
 # обрабатываем команду /help
 @bot.message_handler(commands=['help'])
@@ -226,5 +234,5 @@ def audio(message):
 def photo(message):
     bot.send_message(message.chat.id, "Бот не может воспринимать сообщения такого формата.")
 
-
 bot.polling()
+
